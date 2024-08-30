@@ -1,13 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  h1, h2, h3, h4 {
+    font-family: Gilroy, sans-serif;
+ }
+
+.heading-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1; /* Ensure this is in a higher stacking context */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.heading-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.32em; /* Adjust the height as needed */
+  background-color: rgba(255, 104, 65, 0.6); /* Adjust the transparency */
+  z-index: 0; /* Move it behind the text */
+  transform: rotate(-0.5deg); /* Rotate the line to create a slanted effect */
+  transform-origin: left bottom;
+}
+
+.heading-highlight span {
+  position: relative;
+  z-index: 1; /* Keep the text above the highlight */
 }
