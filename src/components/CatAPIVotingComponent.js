@@ -27,7 +27,7 @@ const CatAPIVotingComponent = () => {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-white">
+        <div className="flex flex-col items-center min-h-screen bg-white scale-100">
             <header className="w-full max-w-7xl px-2 py-4 flex justify-between items-center">
                 <div className="flex items-center">
                     <img src="https://thecatapi.com/_app/immutable/assets/thecatapi-logo.78868573.svg" alt="The Cat API Logo" className="w-40 h-8" />
@@ -40,7 +40,7 @@ const CatAPIVotingComponent = () => {
                 </nav>
             </header>
 
-            <main className="w-full max-w-7xl px-2 py-10 flex justify-between items-start mt-12">
+            <main className="w-full max-w-7xl px-2 py-10 flex justify-between items-start mt-14">
                 <div className="w-1/2">
                     <h1 className="font-bold text-4x1 sm:text-5xl md:text-7xl">
                         <span className="heading-highlight"><span>The Cat API</span></span>
@@ -58,7 +58,7 @@ const CatAPIVotingComponent = () => {
                     </div>
                 </div>
 
-                <div className="w-full p-5 max-w-screen-sm h-auto bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+                <div className="w-1/2 p-5 -mt-10 max-w-screen-md h-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-300">
                     <div className="flex justify-between items-center p-4 mb-2 mx-10 border-gray-200">
                         <button
                             className={`flex items-center space-x-2 font-semibold ${activeTab === 'voting' ? 'text-orange-500' : 'text-gray-600'}`}

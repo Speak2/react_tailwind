@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, List } from 'lucide-react';
+import { Grid, List,Trash2 } from 'lucide-react';
 
 const FavoritesSection = () => {
   const [favorites, setFavorites] = useState([]);
@@ -23,10 +23,25 @@ const FavoritesSection = () => {
     }
   };
 
+  const deleteFavorite = async (favoriteId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/delete_favorite/${favoriteId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setFavorites(favorites.filter(favorite => favorite.id !== favoriteId));
+      } else {
+        console.error('Failed to delete favorite');
+      }
+    } catch (error) {
+      console.error('Error deleting favorite:', error);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg ">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold">Favs</h2>
+        <h2 className="text-2xl font-semibold">Favorites</h2>
         <div className="flex space-x-2">
           <button
             className={`p-2 ${viewMode === 'grid' ? 'text-orange-500' : 'text-gray-500'}`}
@@ -50,12 +65,18 @@ const FavoritesSection = () => {
         ) : (
           <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 gap-2' : 'grid-cols-1 gap-2'}`}>
             {favorites.map((favorite) => (
-              <div key={favorite.id} className={viewMode === 'grid' ? 'aspect-square' : 'h-min'}>
+              <div key={favorite.id} className={`relative ${viewMode === 'grid' ? 'aspect-square' : 'h-min'}`}>
                 <img 
                   src={favorite.image.url} 
                   alt="Favorite cat" 
                   className={`w-full h-full object-cover rounded-lg ${viewMode === 'list' ? 'object-contain' : ''}`}
                 />
+                <button
+                  className="absolute top-2 right-2 p-1 bg-white text-black rounded-full hover:bg-red-500 hover:text-white transition-colors duration-200"
+                  onClick={() => deleteFavorite(favorite.id)}
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
             ))}
           </div>
